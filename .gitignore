@@ -1,0 +1,6 @@
+# dev environment
+.venv
+mainapp/tf
+
+# secrets
+.env
