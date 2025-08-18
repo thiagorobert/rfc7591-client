@@ -1,6 +1,7 @@
 # dev environment
 .venv
 mainapp/tf
+__pycache__
 
 # secrets
 .env
