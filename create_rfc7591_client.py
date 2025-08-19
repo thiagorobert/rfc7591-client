@@ -168,9 +168,9 @@ Examples:
             print(json.dumps(result, indent=2))
         else:
             print("Client Registration Successful!")
-            print(f"Client ID: {result.get('client_id')}")
-            print(f"Client Secret: {result.get('client_secret')}")
-            print(f"Client Name: {result.get('client_name')}")
+            print(f"Dynamic Client ID: {result.get('client_id')}")
+            print(f"Dynamic Client Secret: {result.get('client_secret')}")
+            print(f"Dynamic Client Name: {result.get('client_name')}")
             if result.get('registration_client_uri'):
                 print(f"Registration URI: {result.get('registration_client_uri')}")
             if result.get('registration_access_token'):

@@ -11,9 +11,16 @@ This repo exemplifies using OIDC Dynamic Application Registration (aka, [rfc7591
 1. Create a main application
    * doc: https://auth0.com/docs/quickstart/webapp/python/interactive
    * use auth0's [example code](https://github.com/auth0-samples/auth0-python-web-app/tree/master/01-Login) or the version in `mainapp`
+   * create a `.env` file or export the following environment variables:
+   ```
+    AUTH0_CLIENT_ID
+    AUTH0_CLIENT_SECRET
+    AUTH0_DOMAIN
+    APP_SECRET_KEY
+    ```
    * run the app locally and ensure you can login/logout successfully using Github
     ```
-    python server.py
+    python mainapp/server.py
     ```
 
 ## Step 2 - required auth0 configuration

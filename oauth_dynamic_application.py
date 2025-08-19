@@ -12,19 +12,13 @@ import urllib.parse
 import webbrowser
 from typing import Any, Dict, Optional
 import requests
-from dotenv import load_dotenv
+
 
 # Set up module-specific logger with DEBUG level
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-# Logger handler will be configured based on verbose flag
-_verbose_mode = False
 
 def setup_logging(verbose: bool = False):
     """Configure logging based on verbose flag."""
-    global _verbose_mode
-    _verbose_mode = verbose
     
     # Remove existing handlers
     for handler in logger.handlers[:]:
@@ -37,22 +31,6 @@ def setup_logging(verbose: bool = False):
         formatter = logging.Formatter('%(filename)s:%(lineno)d - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-
-# Load environment variables
-load_dotenv()
-
-# OAuth configuration - will be set from command line arguments
-CLIENT_ID = None
-CLIENT_SECRET = None
-AUTH0_DOMAIN = None
-
-# OAuth endpoints - will be set after parsing arguments
-AUTHORIZATION_URL = None
-TOKEN_URL = None
-USERINFO_URL = None
-
-# Redirect URI for local development - will be set after parsing arguments
-REDIRECT_URI = None
 
 # Global variable to track callback server for cleanup
 _callback_server_instance = None
@@ -222,11 +200,6 @@ class CallbackServer:
                 else:
                     self.send_response(404)
                     self.end_headers()
-            
-            def log_message(self, format, *args):
-                # Suppress default server logging
-                if _verbose_mode:
-                    logger.debug(f"Server: {format % args}")
         
         # Create handler with access to callback_server
         def handler_factory(*args, **kwargs):

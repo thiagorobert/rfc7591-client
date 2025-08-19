@@ -11,7 +11,7 @@ from flask import Flask, redirect, render_template, session, url_for
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
-    load_dotenv(ENV_FILE)
+    print(f"** Using .env file at {ENV_FILE} **\n")
 
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
@@ -72,4 +72,8 @@ def logout():
 
 
 if __name__ == "__main__":
+    assert env.get("APP_SECRET_KEY"), "APP_SECRET_KEY must be set"
+    assert env.get("AUTH0_CLIENT_ID"), "AUTH0_CLIENT_ID must be set"
+    assert env.get("AUTH0_CLIENT_SECRET"), "AUTH0_CLIENT_SECRET must be set"
+    assert env.get("AUTH0_DOMAIN"), "AUTH0_DOMAIN must be set"
     app.run(host="0.0.0.0", port=env.get("PORT", 3000))
