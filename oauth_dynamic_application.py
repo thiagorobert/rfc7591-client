@@ -62,7 +62,7 @@ class OAuth2Client:
         self.authorization_url = f"https://{auth0_domain}/authorize"
         self.token_url = f"https://{auth0_domain}/oauth/token"
         self.userinfo_url = f"https://{auth0_domain}/userinfo"
-        self.redirect_uri = f"http://127.0.0.1:{port}/callback"
+        self.redirect_uri = f"http://127.0.0.1:{port}/dynamic_application_callback"
         
     def generate_auth_url(self, state: str) -> str:
         """Generate the authorization URL for OAuth flow."""
@@ -154,7 +154,7 @@ class CallbackServer:
                 super().__init__(*args, **kwargs)
             
             def do_GET(self):
-                if self.path.startswith('/callback'):
+                if self.path.startswith('/dynamic_application_callback'):
                     # Parse the callback URL
                     parsed_url = urlparse(self.path)
                     query_params = parse_qs(parsed_url.query)

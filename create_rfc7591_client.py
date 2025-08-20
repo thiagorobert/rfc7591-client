@@ -30,7 +30,7 @@ class RFC7591Client:
         """
         payload = {
             "client_name": client_name,
-            "redirect_uris": kwargs.get("redirect_uris", ["http://localhost:8080/callback"]),
+            "redirect_uris": kwargs.get("redirect_uris", ["http://localhost:8080/dynamic_application_callback"]),
             "grant_types": kwargs.get("grant_types", ["authorization_code"]),
             "response_types": kwargs.get("response_types", ["code"]),
             "scope": kwargs.get("scope", "openid profile email"),
@@ -175,6 +175,9 @@ Examples:
                 print(f"Registration URI: {result.get('registration_client_uri')}")
             if result.get('registration_access_token'):
                 print(f"Access Token: {result.get('registration_access_token')}")
+            print()
+            print(f"export DYNAMIC_CLIENT_ID={result.get('client_id')}")
+            print(f"export DYNAMIC_CLIENT_SECRET={result.get('client_secret')}")
 
         return 0
 
